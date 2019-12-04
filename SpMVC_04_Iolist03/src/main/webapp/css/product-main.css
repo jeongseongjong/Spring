@@ -1,0 +1,49 @@
+@charset "UTF-8";
+header{
+	
+	background-color : #BCA9F5;
+	margin : 0;
+	padding : 0.8rem;
+	color : white;
+	
+	/* offset-x offset-y blur-radius color*/
+	/* offset-x, offset-y는 필수 지정값
+		blur는 지정하지 않으면 0 으로 적용 */
+	text-shadow:2px 2px 2px red;
+}
+
+nav{
+	
+	margin:0;
+	padding:0;
+	background-color: #3eb5ff;
+	color:#fff;
+	
+}
+
+nav ul{
+	
+	display:flex;
+	list-style: none;
+	margin:0;
+	padding:0;
+	
+}
+
+nav ul a{
+	
+	display: block;
+	color:inherit;
+	padding:14px 16px;
+	text-decoration:none;
+	transition:0.5s;
+	
+}
+
+nav ul a:hover{
+	
+	background-color: #ddd;
+	color:blue;
+	font-wight:bold;
+	
+}
