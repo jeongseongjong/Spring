@@ -69,7 +69,7 @@
 			</c:when>
 			<c:otherwise>
 			<!-- 
-				items : Collection 객체(list, rrayList)
+				items : Collection 객체(list, ArrayList)
 				var : 사용할 변수
 				varStatus : 반복상태를 알수있는 변수
 				varStatus값에는 index, count, first, last가 있다.

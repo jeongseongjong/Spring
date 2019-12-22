@@ -60,7 +60,7 @@ public class IolistController {
 							.io_qty(1000)
 							.build();
 		
-		// model에 담아서 nput.jsp form에 전송
+		// model에 담아서 input.jsp form에 전송
 		model.addAttribute("IO_DTO", ioDTO);
 		
 		return "iolist/input";

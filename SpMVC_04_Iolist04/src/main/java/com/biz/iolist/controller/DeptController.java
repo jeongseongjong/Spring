@@ -36,7 +36,6 @@ public class DeptController {
 	  * /dept와 /list를 묶어서 /dept /list path로 request 했을때
 	  * list() method가 호출된다.
 	*/
-	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 		public ModelAndView list() {
 		
