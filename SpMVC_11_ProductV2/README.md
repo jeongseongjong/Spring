@@ -12,6 +12,7 @@
 ### 파일 업로드 form
 * 파일 업로드를 위해서 input type="file" tag를 사용하고
 * 파일을 선택할 수 있도록 수행한다.
+
 #### <중요>
 * 파일업로드 form에는 반드시 enctype 속성을 지정한다.
 * enctype="multipart/form-data"라고 지정한다.

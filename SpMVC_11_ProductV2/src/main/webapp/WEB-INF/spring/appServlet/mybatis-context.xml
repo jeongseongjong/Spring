@@ -36,7 +36,6 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 			
-			
 		<property name="typeAliasesPackage" value="com.biz.product.domain"/>
 			
 		<property name="mapperLocations"

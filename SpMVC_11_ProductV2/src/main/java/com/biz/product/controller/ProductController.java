@@ -175,7 +175,7 @@ public class ProductController {
 											// 혹시 값을 보내지 않아도 오류를 내지마라
 											required =false,  
 											
-													// 값을보내지않으면 없음이라는 문자열 세팅
+											// 값을보내지않으면 없음이라는 문자열 세팅
 											defaultValue="없음")String myStr) { 
 		
 		if(myStr.equals("없음")) {

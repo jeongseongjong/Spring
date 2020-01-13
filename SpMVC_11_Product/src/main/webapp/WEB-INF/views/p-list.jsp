@@ -10,7 +10,6 @@
 			
 			$.ajax({
 				
-				// "getProductp_code=" + p_code
 				url:"${rootPath}/getProduct",
 				data : {p_code : p_code}, // 
 				dataType : 'json',

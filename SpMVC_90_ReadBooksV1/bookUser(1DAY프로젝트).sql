@@ -1,0 +1,57 @@
+CREATE TABLE tbl_books (
+B_CODE	    VARCHAR2(20)	PRIMARY KEY,
+B_NAME	    nVARCHAR2(125)	NOT NULL,	
+B_AUTHER	nVARCHAR2(125)	NOT NULL,	
+B_COMP	    nVARCHAR2(125),		
+B_YEAR	    VARCHAR2(10),		
+B_IPRICE	NUMBER		
+);
+
+CREATE TABLE tbl_member(
+M_ID	        VARCHAR2(20) 	NOT NULL	PRIMARY KEY,
+M_PASSWORD	    nVARCHAR2(125)	NOT NULL	,
+M_LOGIN_DATE	nVARCHAR2(10)	,	
+M_REM	        nVARCHAR2(125)		
+);
+
+CREATE TABLE tbl_read_book(
+RB_SEQ	    NUMBER      	NOT NULL	PRIMARY KEY,
+RB_BCODE	VARCHAR2(20)	NOT NULL ,	
+RB_DATE 	VARCHAR2(10)	NOT NULL,	
+RB_STIME	VARCHAR2(10),		
+RB_RTIME	NUMBER(10,3),		
+RB_SUBJECT	nVARCHAR2(20),		
+RB_TEXT	    nVARCHAR2(400),		
+RB_STAR 	NUMBER		
+);
+
+select * from TBL_BOOKS;
+select * from tbl_member;
+select * from tbl_read_book;
+
+CREATE SEQUENCE SEQ_READ_BOOK
+START WITH 1 INCREMENT BY 1;
+
+
+DROP TABLE tbl_read_book;
+DROP TABLE tbl_books;
+DROP TABLE tbl_member;
+
+ALTER TABLE tbl_read_book
+ADD CONSTRAINT FK_BOOKS
+FOREIGN KEY (rb_bcode)
+REFERENCES tbl_books(B_CODE);
+
+INSERT INTO tbl_read_book
+VALUES ('1','979-11-625407-5-6','3','4','5','6','7','8');
+
+INSERT INTO tbl_read_book
+VALUES ('2','979-11-625407-5-6','3','4','5','6','7','8');
+
+INSERT INTO tbl_read_book
+VALUES ('3','979-11-625407-5-6','3','4','5','6','7','8');
+
+INSERT INTO tbl_read_book
+VALUES ('3','979-11-888504-4-0','3','4','5','6','7','8');
+
+commit;

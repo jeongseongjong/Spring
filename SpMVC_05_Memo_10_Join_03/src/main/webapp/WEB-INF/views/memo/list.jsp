@@ -20,7 +20,7 @@ $(function(){
 	click(function() {  } )
 	익명함수(무명함수) click event가 발생했을때 call(호출)되어
 	실행될 코드들의 묶음
-	caoll back function()이라고 부른다.
+	call back function()이라고 부른다.
 	*/
 	
 	$("#th-date").click(function(){

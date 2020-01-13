@@ -3,13 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 
-<%
-	/*
-		spring-form tag lib
-		html의 input, form 등의 입력 box용 tag를 확장하여
-		spring의 controller와 연동이 쉽게 해주는 lib
-	*/
-%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
@@ -45,44 +38,28 @@ input:focus, textarea:focus button{
 </style>
 </head>
 <body>
-	<%
-		/*
-			html의 form은 dafault method가 GET인데
-			form:form 태그는 default method가 POST이다
-		*/
-	%>
 	<fieldset>
 		<legend>메모작성</legend>
-		<form:form modelAttribute="memoDTO" autocomplete="on" class="memo-form">
-		<input name="m_seq" type="hidden" 
-				value='<c:out value="${memoDTO.m_seq}" default="0"/>'>
+		<form:form modelAttribute="booksDTO" autocomplete="on" class="books-form">
+		<input name="b_code" type="hidden" 
+				value='<c:out value="${booksDTO.b_code}" default="0"/>'>
 
-
-			<form:input path="m_date" class="in-box" placeholder="작성일자" />
+			<form:input path="b_name" class="in-box" placeholder="도서명" />
 			<br />
 
-			<form:input path="m_time" class="in-box" placeholder="작성시각" />
+			<form:input path="b_auther" class="in-box" placeholder="저자" />
 			<br />
 
-			<form:input path="m_auth" class="in-box" placeholder="작성자 id" />
+			<form:input path="b_comp" class="in-box" placeholder="출판사" />
 			<br />
 			
-			<form:input path="m_cat" class="in-box" placeholder="카테고리를 입력하라" />
+			<form:input path="b_year" class="in-box" placeholder="출판년도" />
 			<br />
 
-			<form:input path="m_subject" class="in-box" placeholder="제목을 입력하세요" />
+			<form:input path="b_iprice" class="in-box" placeholder="판매가격" />
 			<br />
-			<form:textarea path="m_text" rows="5" /><br/>
 			
 			<button>저장</button>
-
-			<%
-				/*
-						html tag의 input박스와 달리
-						name이라는 속성을 사용하지 않고
-						path라는 속성이 변수설정 역할을 수행
-					*/
-			%>
 
 		</form:form>
 	</fieldset>

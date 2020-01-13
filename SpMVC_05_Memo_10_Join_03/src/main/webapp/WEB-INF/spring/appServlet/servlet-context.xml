@@ -23,8 +23,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.biz.memo.controller" />
-	<context:component-scan base-package="com.biz.memo.service" />
+	<context:component-scan base-package="com.biz.rbooks.controller" />
+	<context:component-scan base-package="com.biz.rbooks.service" />
 	
 	
 	

@@ -21,7 +21,7 @@ public interface UserService {
 	 * 입력한 id가 기존 table에 저장되어 있는지 검사
 	 * 
 	 * u_id를 매개변수로 받아서
-	 * taleㅔ서 회원 id를 검사한 후
+	 * table에서 회원 id를 검사한 후
 	 * 이미 해당 id가 
 	 * 테이블에 존재하면 true return
 	 * 테이블에 없으면 false를 return

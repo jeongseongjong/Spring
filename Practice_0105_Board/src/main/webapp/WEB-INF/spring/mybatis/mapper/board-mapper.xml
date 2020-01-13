@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.board.persistence.boardDao">
+
+	<select id="selectAll" resultType="BoardDTO">
+		SELECT * FROM tbl_board
+	</select>
+
+	<select id="findById" resultType="BoardDTO">
+		SELECT * FROM tbl_board
+		WHERE B_seq =#{B_seq}
+	</select>
+
+
+	<insert id="insert" parameterType="BoardDTO">
+		<selectKey resultType="LONG" keyProperty="B_seq"
+			order="BEFORE">
+			SELECT SEQ_board.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO tbl_board (
+		B_SEQ,
+		B_TIME,
+		B_AUTH,
+		B_DETAIL,
+		) VALUES (
+		#{B_seq,jdbcType=VARCHAR},
+		#{B_date,jdbcType=VARCHAR},
+		#{B_auth,jdbcType=VARCHAR},
+		#{B_detail,jdbcType=VARCHAR},
+		)
+	</insert>
+	<update id="update" parameterType="BoardDTO">
+		UPDATE tbl_board SET
+			B_DATE = #{B_date,jdbcType=VARCHAR},
+			B_AUTH = #{B_auth,jdbcType=VARCHAR},
+			B_DETAIL = #{B_detail,jdbcType=VARCHAR},
+		WHERE B_SEQ = #{B_seq,jdbcType=VARCHAR}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_board WHERE B_Seq = #{B_seq}
+	</delete>
+
+</mapper> 

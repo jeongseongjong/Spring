@@ -68,7 +68,7 @@ public class MemoController {
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String search, Model model) {
-		
+		 
 		List<MemoDTO> memoList; 
 		if(search == null || search.isEmpty()) {
 			memoList = mService.getAllList();

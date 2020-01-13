@@ -31,12 +31,6 @@ public class SessionController {
 		return new MemoDTO();
 	}
 	
-	// mDTO = new MemoDTO()
-	@ModelAttribute("mDTO")
-	public MemoDTO newMDTO() {
-		return new MemoDTO();
-	}
-	
 	
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	// RequestParam에 id값을 보내면 String의 str_seq라는 변수로 받겠다
@@ -51,7 +45,6 @@ public class SessionController {
 	}
 	
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
-	// RequestParam에 id값을 보내면 String의 str_seq라는 변수로 받겠다
 	public String insert(@ModelAttribute("memoDTO") MemoDTO memoDTO, Model model) {
 		
 		log.debug("시퀀스 : " + memoDTO.getM_seq());

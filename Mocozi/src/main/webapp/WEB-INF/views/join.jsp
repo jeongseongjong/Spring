@@ -33,10 +33,10 @@
 				dataType : 'json',
 				success : function(result) {
 
-					if(result.data == true){
-						$(".overlap-check-result").attr("사용가능한 ID")
+					if(result){
+						$(".overlap-check-result").text("사용가능한 ID")
 					}else{
-						$(".overlap-check-result").attr("이미 사용중인 ID")
+						$(".overlap-check-result").text("이미 사용중인 ID")
 					}
 				}
 			})
