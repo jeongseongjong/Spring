@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#search-table {
+	background-color:white;
+	border-collapse : collapse;
+	width: 80%;
+	
+	margin:10px auto;
+	border-bottom:1px solid #ddd;
+	
+	/* 같이 있어야 한다. */
+	height:100%;
+}
+
+#search-table td, #search-table th{
+	white-space : nowrap;
+	text-align : left;
+	padding : 8px;
+	vertical-align: top;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

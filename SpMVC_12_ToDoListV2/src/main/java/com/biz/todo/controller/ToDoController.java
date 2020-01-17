@@ -61,13 +61,12 @@ public class ToDoController {
 		
 		toService.complete(str_seq,td_complete);
 		
-		
 		return "redirect:/list";
 	}
 	
 	@RequestMapping(value="alarm", method=RequestMethod.GET)
 	public String alarm(@RequestParam("td_seq")String str_seq,
-							@RequestParam("td_alarm") String td_alarm) {
+						@RequestParam("td_alarm") String td_alarm) {
 		
 		toService.alarm(str_seq,td_alarm);
 		

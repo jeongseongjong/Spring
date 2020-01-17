@@ -11,19 +11,18 @@ import com.biz.todo.domain.ToDoList;
 @Service("todoV3")
 public class ToDoServiceV3 extends ToDoServiceV2{
 
+	
+	
 	@Override
 	public ToDoList findBySeq(long td_seq) {
 
 		
-		
 		return toDao.findBySeq(td_seq);
-	
 	}
 	
 	@Override
 	public List<ToDoList> findBySubject(String td_subject) {
 
-	
 		return toDao.findBySubject(td_subject);
 	}
 

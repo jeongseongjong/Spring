@@ -25,7 +25,6 @@ public class ToDoServiceV2 extends ToDoServiceV1 {
 
 	@Override
 	public int update(ToDoList todoList) {
-
 		
 		return toDao.update(todoList);
 	}
