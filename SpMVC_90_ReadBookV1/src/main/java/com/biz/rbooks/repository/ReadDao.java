@@ -28,7 +28,7 @@ public interface ReadDao {
 	public BooksDTO getBooks(String b_code);
 
 
-	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
+	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode} ORDER BY rb_seq")
 	public List<ReadDTO> findByRBCode(String rb_bcode);
 	
 	@Select("SELECT * FROM tbl_read_book WHERE rb_seq = #{rb_seq}")

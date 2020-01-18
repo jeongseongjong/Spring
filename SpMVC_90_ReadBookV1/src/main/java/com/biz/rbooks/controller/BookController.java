@@ -147,7 +147,12 @@ public class BookController {
 			model.addAttribute("LOGIN_MSG", "TRY");
 			return "redirect:/member/login";
 		}
-		bService.delete(b_code);
+		try {
+			bService.delete(b_code);
+		} catch (Exception e) {
+
+			return "redirect:/";
+		}
 		
 		return "redirect:/";
 	}

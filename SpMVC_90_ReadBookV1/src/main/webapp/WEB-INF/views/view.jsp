@@ -35,7 +35,15 @@
 </style>
 <script>
 	$(function() {
-
+		$(".delete").click(function() {
+			
+			alert("삭제삭제")
+			if(!confirm("삭제 할까요 ?")){
+				
+				alert("삭제에 실패하셨습니다.");
+				return false
+			}
+		})
 	})
 </script>
 <body>
@@ -79,10 +87,10 @@
 						<td>${vo.rb_subject}</td>
 						<td>${vo.rb_star}</td>
 						<td><a href="${rootPath}/read/update?id=${vo.rb_seq}">수정</a>
-						<div id="delete">
+						<div class="delete">
 							<a href="${rootPath}/read/delete?id=${vo.rb_seq}">삭제</a>
 						</div></td>
-					<td><div id="view">
+					<td><div class="view">
 							<a href="${rootPath}/read/view-seq?id=${vo.rb_seq}">상세보기</a>
 						</div>
 					</tr>

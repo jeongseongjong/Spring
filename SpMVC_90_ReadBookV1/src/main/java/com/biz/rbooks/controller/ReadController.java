@@ -137,7 +137,7 @@ public class ReadController {
 		rService.update(readDTO);
 		sStatus.setComplete();
 		
-		return "redirect:/read/rList";
+		return "redirect:/";
 		
 	}
 	
@@ -154,7 +154,7 @@ public class ReadController {
 		
 		rService.delete(rb_seq);
 		
-		return "redirect:/read/rList";
+		return "redirect:/";
 	}
 	
 }

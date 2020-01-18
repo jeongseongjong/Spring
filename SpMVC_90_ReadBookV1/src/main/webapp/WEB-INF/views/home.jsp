@@ -38,7 +38,10 @@
 	$(function() {
 
 		$("#delete").click(function() {
-			alert("삭제하시겠습니까?")
+			if(!confirm("삭제 할까요 ?")){
+				return false;
+			}
+			
 		})
 		
 		$(".b-row").click(function(){
