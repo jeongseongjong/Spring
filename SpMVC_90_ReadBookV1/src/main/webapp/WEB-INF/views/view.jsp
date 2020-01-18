@@ -90,7 +90,7 @@
 			</tbody>
 		</table>
 		<div>
-			<a href="${rootPath}/read/insert?rb_bcode=${readList[0].rb_bcode}">독서록 등록</a>
+			<a href="${rootPath}/read/insert">독서록 등록</a>
 		</div>
 	</div>
 </body>

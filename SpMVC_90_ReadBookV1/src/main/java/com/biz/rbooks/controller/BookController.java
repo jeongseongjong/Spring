@@ -89,8 +89,6 @@ public class BookController {
 			model.addAttribute("BODY", "READ_WR");
 			model.addAttribute("booksDTO", booksDTO);
 		}
-			
-		
 		return "insert";
 	}
 	
