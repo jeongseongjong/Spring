@@ -107,6 +107,8 @@ $(function(){
 			$("form").serialize(),
 			function(result){
 			alert(result)
+				
+				// 새로고침
 				document.location.href= document.location.href
 			}
 		)

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.biz.rbooks.domain.BooksDTO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.repository.BookDao;
 
 @Service
@@ -55,6 +56,21 @@ public class BookService {
 		
 		return bDao.delete(b_code);
 	}
+
+	public long totalCount() {
+
+		
+		return bDao.proTotalCount();
+	}
+
+	public List<BooksDTO> selectPagination(PageDTO pageDTO) {
+
+		List<BooksDTO> booksDTOList = bDao.selectPagination(pageDTO);
+		
+		return booksDTOList;
+		
+	}
+
 
 	
 

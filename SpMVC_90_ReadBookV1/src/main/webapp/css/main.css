@@ -21,6 +21,10 @@ a {
 	text-decoration: none;
 }
 
+h2.title.subject {
+	margin-top: 20px;
+}
+
 body {
 	display: flex;
 	justify-content: center;
@@ -33,6 +37,7 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+
 
 .main-subject {
 	color: #e85a71;

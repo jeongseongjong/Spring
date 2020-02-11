@@ -31,6 +31,8 @@ public class MybatisConfig {
 	public SqlSessionFactoryBean sqlFactory() {
 		
 		SqlSessionFactoryBean sb = new SqlSessionFactoryBean();
+		
+		// oracleDs : 위의 DataSource 메소드
 		sb.setDataSource(oracleDs());
 		sb.setTypeAliasesPackage("com.biz.rbooks.domain");
 		return sb;

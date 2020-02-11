@@ -30,7 +30,7 @@ public interface ToDoListDao {
 	/*
 	 * mybatis의 mapper를 대신하는 Annotation
 	 */
-	@Select("SELECT * FROM tbl_todolist ORDER BY td_seq")
+	@Select("SELECT * FROM tbl_todoList ORDER BY td_seq")
 	public List<ToDoList> selectAll();
 	
 	@InsertProvider(type=ToDoListSQL.class,method="insert_sql")
@@ -60,7 +60,7 @@ public interface ToDoListDao {
 	@UpdateProvider(type = ToDoListSQL.class, method="alarm_sql")
 	public int alarm(@Param("td_seq")long td_seq );
 	
-	@Delete("DELETE * FROM tbl_todolist WHERE td_seq = ${td_seq}")
+	@Delete("DELETE FROM tbl_todoList WHERE td_seq = #{td_seq}")
 	public int delete(long td_seq);
 	
 	@UpdateProvider(type=ToDoListSQL.class,method="update_sql")

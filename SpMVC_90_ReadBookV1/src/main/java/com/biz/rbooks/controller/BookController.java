@@ -16,7 +16,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.biz.rbooks.domain.BooksDTO;
 import com.biz.rbooks.domain.MemberDTO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.service.BookService;
+import com.biz.rbooks.service.PageService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,17 +28,23 @@ public class BookController {
 
 	@Autowired
 	BookService bService;
+	@Autowired
+	PageService pageService;
 	
 	@RequestMapping(value="blist",method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String getBlist(Model model) {
+	public String getBlist(Model model, BooksDTO booksDTO, @RequestParam(value="currentPageNo", required=false, defaultValue= "1")int currentPageNo) {
 		
-		List<BooksDTO> bookList = bService.selectAll();
+		long totalCount = bService.totalCount();
+		PageDTO pageDTO = pageService.getPagination(totalCount, currentPageNo);
+		List<BooksDTO> bList = bService.selectPagination(pageDTO);		
 		
-		model.addAttribute("BLIST", bookList);
-		
-		log.debug("북리스트" + bookList.toString());
-		
-		return "home";
+		model.addAttribute(pageDTO);
+		log.debug("요것은 pageDto" + pageDTO.toString());
+		model.addAttribute("HOME", "BLIST");
+		model.addAttribute("PLIST", bList);
+		log.debug("요것은 pageList" + bList);
+
+		return "template";
 	}
 	
 	@ResponseBody
@@ -54,9 +62,10 @@ public class BookController {
 		
 		List<BooksDTO> bookList = bService.findByBNames(b_name);
 		log.debug("search 리스트" + bookList.toString());
-		model.addAttribute("BLIST", bookList);
+		model.addAttribute("HOME","BLIST");
+		model.addAttribute("PLIST", bookList);
 		
-		return "home";
+		return "template";
 	}
 	
 	@ResponseBody
@@ -81,7 +90,11 @@ public class BookController {
 		
 		MemberDTO memberDTO = (MemberDTO) hSession.getAttribute("memberDTO");
 		
-		if(memberDTO == null) {
+		List<BooksDTO> bookList = bService.selectAll();
+		model.addAttribute("HOME", "INSERT");
+		model.addAttribute("BLIST", bookList);
+		
+		if(memberDTO == null) {	
 			model.addAttribute("BODY", "LOGIN");
 			model.addAttribute("LOGIN_MSG", "TRY");
 			return "redirect:/member/login";
@@ -89,7 +102,7 @@ public class BookController {
 			model.addAttribute("BODY", "READ_WR");
 			model.addAttribute("booksDTO", booksDTO);
 		}
-		return "insert";
+		return "template";
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
@@ -123,8 +136,9 @@ public class BookController {
 		
 		BooksDTO booksDTO = bService.findByBCode(b_code);
 		log.debug("업데이트" + booksDTO.toString());
+		model.addAttribute("HOME", "INSERT");
 		model.addAttribute("booksDTO", booksDTO);
-		return "insert";
+		return "template";
 	}
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)

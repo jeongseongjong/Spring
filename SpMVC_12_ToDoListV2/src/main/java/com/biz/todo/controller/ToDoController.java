@@ -79,16 +79,16 @@ public class ToDoController {
 		
 		try {
 			
-			long td_seq = Long.valueOf(str_seq);	
+			long td_seq = Long.valueOf(str_seq);
+			log.debug("여기는 컨트롤러의 td_seq : " + td_seq);
 			toService.delete(td_seq);
+			
+			log.debug("여기는 서비스 뒤에 컨트롤러의 td_seq : " + td_seq);
 			
 		} catch (Exception e) {
 			log.debug("삭제 오류");
 		
 		}
-		
-		
-		
 		
 		return "redirect:/list";
 	}

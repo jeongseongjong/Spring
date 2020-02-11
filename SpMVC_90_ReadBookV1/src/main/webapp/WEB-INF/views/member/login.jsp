@@ -11,6 +11,15 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Document</title>
 
+<link href="${rootPath}/css/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="${rootPath}/css/css/heroic-features.css" rel="stylesheet">
+<script src="${rootPath}/css/vendor/jquery/jquery.min.js"></script>
+<script
+	src="${rootPath}/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
@@ -36,7 +45,6 @@
 			<c:if test="${LOGIN_MSG == 'NO_AUTH'}">
 				<h3>작성자만 확인 가능</h3>
 			</c:if>
-
 			<input type="text" name="m_id" placeholder="ID를 입력하세요"><br />
 			<input type="password" name="m_password" placeholder="Password"><br />
 			<button id="key">

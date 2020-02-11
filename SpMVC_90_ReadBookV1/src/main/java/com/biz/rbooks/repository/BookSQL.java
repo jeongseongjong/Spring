@@ -4,6 +4,28 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class BookSQL {
 
+	// 1. 가장 안에 있는 query부터 수행된다.
+	// 2. SELECT /*+ INDEX_DESC(B) */ * FROM tbl_books B" 를 alias IP라고 지정했다.
+	// 3. ROWNUM을 지정해서 테이블 데이터의 앞에 순번이 붙는다. ALIAS NUM라고했다.
+	// 4. &lt; : <
+	// 5. &gt; : >
+	// 6. 뒤를 자르는 조건문을 실행
+	// 7. 나머지에서 앞을 자르는 조건문 실행
+	// 8. 쿼리문이 실행되는 값에 ALIAS를 꼭 넣어줘야한다.
+	public static final String selectPage = 
+			"<script>"
+			+ "SELECT * FROM"
+			+ "		("
+			+ "			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM" 
+			+ "			("
+			+ "				SELECT /*+ INDEX_DESC(B) */ * FROM tbl_books B" 
+			+ "			)IP"
+			+ "			WHERE ROWNUM &lt;= #{limit} " 
+			+ "		)TBL"
+			+ "		WHERE NUM &gt;= #{offset}"
+			+ "</script>";
+	
+	
 	public String insert_sql() {
 		return new SQL() {{
 		INSERT_INTO ("tbl_books");

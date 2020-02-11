@@ -1,110 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>□□□ 나의 JSP 페이지 □□□</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel="stylesheet" href="${rootPath}/css/main.css">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<!-- Popper JS -->
+<!-- Bootstrap core CSS -->
+<link href="${rootPath}/css/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="${rootPath}/css/css/heroic-features.css" rel="stylesheet">
+<script src="${rootPath}/css/vendor/jquery/jquery.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	src="${rootPath}/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<title>□□□ 나의 JSP 페이지 □□□</title>
+</head>
+
 <style>
-.menu-line {
-	margin: 5px;
-	display: flex;
-	justify-content: space-between;
+body {
+	margin-top: 30px;
 }
 
-.test {
-	margin-left: -280px;
-	margin-bottom: 10px;
- }
+.card-text {
+	display: flex;
+}
+
+.card-img-top {
+	width: 100px;
+	height: 200px;
+	margin-right: 10px;
+}
+
+.btn-box {
+	float: right;
+	display: flex;
+}
+
+.b-row {
+	text-align: left;
+}
+
+
 </style>
+
 <script>
 	$(function() {
 
+		$(".b-row").click(
+				function() {
+
+					let rb_bcode = $(this).attr("data-id")
+
+					let rb_bname = $(this).attr("data-name")
+					alert("기록할 도서명 : " + rb_bname)
+
+					document.location.href = "${rootPath}/read/view-code?id="
+							+ rb_bcode
+
+				})
+
 		$("#delete").click(function() {
-			if(!confirm("삭제 할까요 ?")){
-				return false;
+			if (confirm("삭제 할까요 ?")) {
+
+				return true;
 			}
-			
+
 		})
-		
-		$(".b-row").click(function(){
-			
-			let rb_bcode = $(this).attr("data-id")
-			
-			alert(rb_bcode)
-			
-			document.location.href = "${rootPath}/read/view-code?id="  + rb_bcode
-			
+
+		$("#update").click(function() {
+			if (confirm("수정 하시겠습니까?")) {
+
+				return true;
+			}
 		})
+
 	})
 </script>
-
-</head>
 <body>
+	<!-- Page Content -->
 	<div class="container">
-		<h2>
-			<a href="${rootPath}/" class="title">도서 목록 리스트</a>
-		</h2>
-		<div class="menu-line">
-			<form action="${rootPath}/bookList">
-				<a href="${rootPath}/insert" class="btn btn-outline-dark">도서등록</a>
-				<input type="text" class="search" name="search">
-			</form>
-			<c:choose>
-				<c:when test="${memberDTO == null || memberDTO.m_id == null }">
-					<a id="login" href="${rootPath}/member/login"><i
-						class="fas fa-sign-in-alt fa-2x"></i></a>
-				</c:when>
-				<c:otherwise>
-					<div class="test">${memberDTO.m_id}님안녕하세요</div>
-					<a id="login" href="${rootPath}/member/logout"><i
-						class="fas fa-sign-out-alt fa-2x"></i></a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<table border="1" class="b-list table-striped table-hover">
-			<tr>
-				<th>도서코드</th>
-				<th>도서명</th>
-				<th>저자</th>
-				<th>출판사</th>
-				<th>출판년도</th>
-				<th>판매가격</th>
-				<th>비고</th>
-			</tr>
-			<c:forEach items="${BLIST}" var="vo">
-				<tr class="b-row" data-id="${vo.b_code}">
-					<td>${vo.b_code}</td>
-					<td>${vo.b_name}</td>
-					<td>${vo.b_auther}</td>
-					<td>${vo.b_comp}</td>
-					<td>${vo.b_year}</td>
-					<td>${vo.b_iprice}</td>
-					<td><a href="${rootPath}/update?id=${vo.b_code}">수정</a>
-						<div id="delete">
-							<a href="${rootPath}/delete?id=${vo.b_code}">삭제</a>
-						</div></td>
-				</tr>
+
+		<!-- Page Features -->
+		<div class="row text-center">
+			<c:forEach items="${PLIST}" var="vo">
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="card h-100">
+						<div class="card-body">
+							<div class="b-list card-text">
+								<img class="card-img-top" src="http://placehold.it/100x50"
+									alt="">
+								<div class="content-box">
+									<h4 class="card-title">${vo.b_name}</h4>
+									<div class="b-row" data-id="${vo.b_code}"
+										data-name="${vo.b_name}">
+										<div>ISBN : ${vo.b_code}</div>
+										<div>저자 : ${vo.b_auther}</div>
+										<div>출판사 : ${vo.b_comp}</div>
+										<div>출판년도 : ${vo.b_year}</div>
+										<div>판매가격 : ${vo.b_iprice}</div>
+									</div>
+									<div class="btn-box">
+										<div id="update">
+											<a href="${rootPath}/update?id=${vo.b_code}">수정</a>
+										</div>
+										&nbsp;&nbsp;&nbsp;
+										<div id="delete">
+											<a href="${rootPath}/delete?id=${vo.b_code}">삭제</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</c:forEach>
-		</table>
-		<div></div>
+		</div>
+		<!-- /.row -->
 	</div>
+	<c:choose>
+		<c:when test="${empty PLIST}">
+			<div>데이터가 없습니다.</div>
+		</c:when>
+		<c:otherwise>
+			<div class="pagination">
+				<%@ include file="/WEB-INF/views/pagination.jsp"%>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<!-- /.container -->
 </body>
 </html>

@@ -53,8 +53,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		
-		
-		
 		log.debug(msg);
 		log.debug("나는 interceptor입니다");
 		

@@ -496,7 +496,6 @@ input[type="text"] {
 		<c:if test="${MODAL == 'LOGIN'}">
 			<%@ include file="/WEB-INF/views/body/login.jsp"%>
 		</c:if>
-		
 	</div>
 </body>
 </html>

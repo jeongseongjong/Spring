@@ -4,20 +4,18 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
 
 import com.biz.rbooks.domain.BooksDTO;
+import com.biz.rbooks.domain.PageDTO;
 
 @Repository
 public interface BookDao {
 
-	@Select("SELECT * FROM tbl_books")
-	public List<BooksDTO> selectAll();
+	 @Select("SELECT * FROM tbl_books")
+	 public List<BooksDTO> selectAll();
 	
 	@InsertProvider(type=BookSQL.class,method="insert_sql")
 	public int insert(BooksDTO booksDTO);
@@ -33,6 +31,13 @@ public interface BookDao {
 	
 	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
 	public BooksDTO findByBCode(String b_code);
+
+	@Select("SELECT COUNT(*) FROM tbl_books")
+	public long proTotalCount();
+	
+	@Select(BookSQL.selectPage)
+	public List<BooksDTO> selectPagination(PageDTO pageDTO);
+
 	
 //	@Select("SELECT * FROM tbl_books WHERE B_NAME LIKE '%' || #{b_name,jdbcType=VARCHAR} || '%' ")
 //	@Results(value = { @Result(property = "b_code", column = "b_code"),

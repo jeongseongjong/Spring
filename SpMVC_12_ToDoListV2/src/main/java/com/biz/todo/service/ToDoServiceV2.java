@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.biz.todo.domain.ToDoList;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service("toServiceV2")
 public class ToDoServiceV2 extends ToDoServiceV1 {
 
@@ -32,6 +34,8 @@ public class ToDoServiceV2 extends ToDoServiceV1 {
 	@Override
 	public int delete(long td_seq) {
 
+		log.debug("여기는 서비스V2의 DELETE : " + td_seq);
+		
 		return toDao.delete(td_seq);
 	}
 

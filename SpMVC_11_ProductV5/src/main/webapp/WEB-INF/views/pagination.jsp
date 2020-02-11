@@ -14,8 +14,7 @@
 		</c:if>
 		<c:forEach begin="${pageDTO.startPageNo}" end="${pageDTO.endPageNo}"
 			var="pageNo">
-			<li
-				class="page-item <c:if test="${pageNo == pageDTO.currentPageNo}">active </c:if>">
+			<li class="page-item <c:if test="${pageNo == pageDTO.currentPageNo}">active </c:if>">
 				<a href="${rootPath}/plist?currentPageNo=${pageNo}"
 				class="page-link">${pageNo}</a>
 			</li>
