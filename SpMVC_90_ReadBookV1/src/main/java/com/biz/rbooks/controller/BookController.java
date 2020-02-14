@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,11 +39,13 @@ public class BookController {
 		PageDTO pageDTO = pageService.getPagination(totalCount, currentPageNo);
 		List<BooksDTO> bList = bService.selectPagination(pageDTO);		
 		
-		model.addAttribute(pageDTO);
+		// model.addAttribute(pageDTO);
 		log.debug("요것은 pageDto" + pageDTO.toString());
 		model.addAttribute("HOME", "BLIST");
 		model.addAttribute("PLIST", bList);
 		log.debug("요것은 pageList" + bList);
+		model.addAttribute("controller", "blist");
+		model.addAttribute("pageDTO", pageDTO);
 
 		return "template";
 	}
@@ -57,13 +60,25 @@ public class BookController {
 		return booksDTO;
 	}
 	
+	@Mapper
 	@RequestMapping(value="bookList", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String getBookNames(@RequestParam("search")String b_name, Model model){
+	public String getBookNames(@RequestParam("search")String search,
+								@RequestParam(value="currentPageNo", required=false, defaultValue="1")int currentPageNo, 
+								@RequestParam(value="text", required=false, defaultValue = "") String text,
+								Model model){
+		List<BooksDTO> bookList = bService.findByBNames(search);
 		
-		List<BooksDTO> bookList = bService.findByBNames(b_name);
+		long searchCount = bookList.size();
+		PageDTO pageDTO = pageService.getPagination(searchCount, currentPageNo);
+		List<BooksDTO> BLIST = bService.searchPagination(pageDTO,search);
+		
 		log.debug("search 리스트" + bookList.toString());
+		log.debug("페이지네이션 " + BLIST.toString());
 		model.addAttribute("HOME","BLIST");
-		model.addAttribute("PLIST", bookList);
+		model.addAttribute("search",search);
+		model.addAttribute("PLIST", BLIST);
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("controller", "bookList");
 		
 		return "template";
 	}

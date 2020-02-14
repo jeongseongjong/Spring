@@ -25,6 +25,19 @@ public class BookSQL {
 			+ "		WHERE NUM &gt;= #{offset}"
 			+ "</script>";
 	
+	public static final String search = 
+			"<script>"
+			+ "SELECT * FROM"
+			+ "		("
+			+ "			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM" 
+			+ "			("
+			+ "				SELECT /*+ INDEX_DESC(B) */ * FROM tbl_books B WHERE b_name LIKE '%' || #{search} || '%' " 
+			+ "			)IP"
+			+ "			WHERE ROWNUM &lt;= #{pageDTO.limit} " 
+			+ "		)TBL"
+			+ "		WHERE NUM &gt;= #{pageDTO.offset}"
+			+ "</script>";
+	
 	
 	public String insert_sql() {
 		return new SQL() {{

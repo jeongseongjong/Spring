@@ -16,24 +16,22 @@ import com.biz.rbooks.repository.BookDao;
 @Service
 public class BookService {
 
-
 	protected final BookDao bDao;
 	protected BookService bService;
-	
+
 	@Autowired
 	public BookService(BookDao bDao) {
 		super();
 		this.bDao = bDao;
 	}
-	
-	public List<BooksDTO> selectAll(){
-		
+
+	public List<BooksDTO> selectAll() {
+
 		return bDao.selectAll();
 	}
 
 	public BooksDTO findByBCode(String b_code) {
 
-		
 		return bDao.findByBCode(b_code);
 	}
 
@@ -41,37 +39,46 @@ public class BookService {
 
 		return bDao.findByBNames(b_name);
 	}
-	
+
 	public int insert(BooksDTO booksDTO) {
-		
+
 		return bDao.insert(booksDTO);
 	}
 
-	public int update(BooksDTO booksDTO){
+	public int update(BooksDTO booksDTO) {
 
 		return bDao.update(booksDTO);
 	}
 
 	public int delete(String b_code) {
-		
+
 		return bDao.delete(b_code);
 	}
 
 	public long totalCount() {
 
-		
 		return bDao.proTotalCount();
 	}
 
 	public List<BooksDTO> selectPagination(PageDTO pageDTO) {
 
 		List<BooksDTO> booksDTOList = bDao.selectPagination(pageDTO);
-		
+
 		return booksDTOList;
-		
+
 	}
-
-
 	
+	public List<BooksDTO> searchPagination(PageDTO pageDTO, String search) {
+
+		List<BooksDTO> booksDTOList = bDao.searchPagination(pageDTO,search);
+
+		return booksDTOList;
+
+	}
+	
+	public long searchCount(long bCount) {
+
+		return bDao.searchCount();
+	}
 
 }

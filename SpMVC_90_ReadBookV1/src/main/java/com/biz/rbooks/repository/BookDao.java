@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
@@ -35,9 +36,15 @@ public interface BookDao {
 	@Select("SELECT COUNT(*) FROM tbl_books")
 	public long proTotalCount();
 	
+	@Select("SELECT COUNT(*) FROM tbl_books")
+	public long searchCount();
+	
 	@Select(BookSQL.selectPage)
 	public List<BooksDTO> selectPagination(PageDTO pageDTO);
-
+	
+	@Select(BookSQL.search)
+	public List<BooksDTO> searchPagination(@Param("pageDTO")PageDTO pageDTO, @Param("search")String search);
+	
 	
 //	@Select("SELECT * FROM tbl_books WHERE B_NAME LIKE '%' || #{b_name,jdbcType=VARCHAR} || '%' ")
 //	@Results(value = { @Result(property = "b_code", column = "b_code"),

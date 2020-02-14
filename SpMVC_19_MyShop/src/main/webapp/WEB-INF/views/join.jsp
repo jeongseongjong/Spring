@@ -16,7 +16,7 @@
 	
 	width:400px;
 	padding:40px;
-	background:#191919;
+	background:blue;
 	text-align:center;
 	z-index:10;
 	
@@ -103,65 +103,54 @@
 	display:none;
 }
 </style>
-
 <script>
 $(function(){
 	
-	$("#btn-join").click(function(){
-		document.location.href="${rootPath}/auth/join"
-	})
 	
-	$("btn-login").click(function(){
+	$("#btn-join").click(function(){
 	alert("abcd")
 		// 유효성 검사
 		// ID, Password가 입력되지 않았을 때
-		let u_id = $("#u_id").val()
-		if(u_id == ""){
+		let username = $("#username")
+		let password = $("#password")
+		let re_password = $("#re_password")
+		
+		if(username.val() == ""){
 			alert("아이디를 입력하세요")
-			$("#u_id").focus();
+			username.focus();
 			return false;
 		}
-		/*
-		var params = $("form").serialize();
-		$.ajax({
-			url : "${rootPath}/member/login",
-			type : 'POST',
-			data : params,
-			success : function(result){
-				alert(result)
-			}
-		})
-		*/
-		$.post("${rootPath}/rest/member/login",
-			$("form").serialize(),
-			function(result){
-			alert(result)
-				document.location.href= document.location.href
-			}
-		)
+	
+		if(password.val() == ""){
+			alert("아이디를 입력하세요")
+			password.focus();
+			return false;
+		}
+		
+		if(re_password.val() == ""){
+			alert("비밀번호 확인 입력하세요")
+			re_password.focus();
+			return false;
+		}
+		
+		if(password.val() != re_password.val()){
+			alert("비밀번화와 비밀번호 확인이 다릅니다.")
+			password.focus();
+			return false;
+		}
+		$("form").submit()
+	
 	})
 })
 	
 </script>
 
-	<form:form method="POST" action="${rootPath}/login" class="login-form">
-		<h2>로그인</h2>
-		<c:if test="${param.error != null}">
-		<h3>아이디 또는 패스워드가 잘못되었다.</h3>
-		</c:if>
-		<c:if test="${LOGIN_MSG == 'TRY'}">
-		<h3>로그인을 하라</h3>
-		</c:if>
-		<c:if test="${LOGIN_MSG == 'NO_AUTH'}">
-		<h3>작성자만 확인 가능</h3>
-		</c:if>
-		
-		<c:if test="${LOGIN_MSG == '0'}">
-		<h3>로그인을 환영합니다</h3>
-		</c:if>
+	<form:form method="POST" action="${rootPath}/auth/join" class="login-form">
+		<h2>회원가입</h2>
 		
 		<input type="text" id="username" name="username" placeholder="사용자 ID"> 
 		<input type="password" id="password" name="password" placeholder="비밀번호">
-		<button type="submit" id="btn-login-s">로그인</button>
+		<input type="password" id="re_password" name="re_password" placeholder="비밀번호 확인">
 		<button type="button" id="btn-join">회원가입</button>
+		
 	</form:form>

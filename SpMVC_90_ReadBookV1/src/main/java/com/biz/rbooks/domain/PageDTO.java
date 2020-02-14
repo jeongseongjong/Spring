@@ -15,6 +15,7 @@ import lombok.ToString;
 @Builder
 public class PageDTO {
 
+	
 	private long totalCount ;
 	
 	// pagination 시작레코드와 끝 레코드
