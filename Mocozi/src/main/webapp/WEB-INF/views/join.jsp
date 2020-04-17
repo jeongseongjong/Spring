@@ -28,7 +28,7 @@
 				type : "POST",
 				url : '${rootPath}/member/idcheck',
 				data : {
-					'data' : data
+					'u_id' : u_id
 				},
 				dataType : 'json',
 				success : function(result) {

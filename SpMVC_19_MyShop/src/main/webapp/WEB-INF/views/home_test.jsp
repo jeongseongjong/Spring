@@ -12,9 +12,12 @@
 <title>□□□ 나의 JSP 페이지 □□□</title>
 </head>
 <body>
+		
 	<sec:authorize access="isAnonymous()">
 		<a href="${rootPath}/login">로그인</a>
 	</sec:authorize>
+	
+			
 	<sec:authorize access="isAuthenticated()">
 		<form method="POST" action="${rootPath}/logout">
 			<input type="hidden" 
@@ -23,9 +26,13 @@
 			<button type="submit">로그아웃</button>
 		</form>
 	</sec:authorize>
+	
+	<!-- 권한이 'ADMIN'일때 접근할 수 있는 태그 -->
 	<sec:authorize access="hasRole('ADMIN')">
 		<p>여기는 관리자 페이지</p>		
 	</sec:authorize>
+	
+	<!-- 권한이 'USER'일때 접근할 수 있는 태그 -->
 	<sec:authorize access="hasRole('USER')">
 		<p>여기는 일반 사용자 페이지</p>
 	</sec:authorize>

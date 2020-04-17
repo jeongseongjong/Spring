@@ -108,7 +108,6 @@ $(function(){
 	
 	
 	$("#btn-join").click(function(){
-	alert("abcd")
 		// 유효성 검사
 		// ID, Password가 입력되지 않았을 때
 		let username = $("#username")

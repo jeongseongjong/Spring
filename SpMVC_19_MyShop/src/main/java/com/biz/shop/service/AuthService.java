@@ -28,7 +28,7 @@ public class AuthService {
 		
 		// 처음등록 사용자에게는 admin을 부여하고
 		// 이후 사용자에게는 user를 부여하는 코드를 부착
-		
+		 
 		String planPass = userVO.getPassword();
 		String cryptPass = passEncoder.encode(planPass);
 		

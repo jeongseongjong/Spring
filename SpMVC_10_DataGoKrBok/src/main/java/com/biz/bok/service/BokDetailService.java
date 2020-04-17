@@ -1,9 +1,7 @@
 package com.biz.bok.service;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

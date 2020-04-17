@@ -39,7 +39,6 @@ public class BookController {
 		PageDTO pageDTO = pageService.getPagination(totalCount, currentPageNo);
 		List<BooksDTO> bList = bService.selectPagination(pageDTO);		
 		
-		// model.addAttribute(pageDTO);
 		log.debug("요것은 pageDto" + pageDTO.toString());
 		model.addAttribute("HOME", "BLIST");
 		model.addAttribute("PLIST", bList);

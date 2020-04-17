@@ -51,7 +51,7 @@ public class AuthController {
 		
 		return cUserDetails;
 	}
-	
+	 
 	@RequestMapping(value="/auth/test", method=RequestMethod.GET)
 	public String test() {
 		

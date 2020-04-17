@@ -45,12 +45,16 @@ footer {
 				function(event) {
 
 					if (event.keyCode == 13) {
-						let strText = $("#search").val()
-						if (strText == "") {
-							alert("도서이름을 입력한 후 Enter")
-
+						
+						let a = $("#search").val()
+						
+						if($.trim(a) == ""){
+							
+							alert("문자를 입력하세요")
 							return false;
 						}
+							
+						
 						alert("입력하신 도서명은 : " + strText)
 						document.location.href = "${rootPath}/bookList?search="
 								+ strText

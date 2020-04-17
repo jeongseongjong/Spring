@@ -53,7 +53,4 @@
 	</form>
 </body>
 
-<script>
-	
-</script>
 </html>
